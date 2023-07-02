@@ -1,12 +1,13 @@
 <h2>Base description</h2>
-**Basic connectors for easy and fast connection of your consumers and producers to Kafka instances**
+<b>Basic connectors for easy and fast connection of your consumers and producers to Kafka instances</b>
 <h2>Usage Kafka</h2>
-* Start docker-compose
-* Go to Kafka UI [localhost:8080]()
+<li> Start docker-compose </li>
+<li> Go to Kafka UI [localhost:8080]() </li>
 
 <h2>Usage producer</h2>
 Basic steps:
-* Create producer instance with `ReactiveInstance` sender object
+<li> Create producer instance with `ReactiveInstance` sender object </li>
+
 ```
 builder.Services.AddKafkaProducer<string, ReactiveInstance>(options =>
 {
@@ -14,7 +15,9 @@ builder.Services.AddKafkaProducer<string, ReactiveInstance>(options =>
     options.BootstrapServers = "localhost:9092,localhost:9093,localhost:9094";
 });
 ```
-* Usage producer from DI
+
+<li> Usage producer from DI </li>
+
 ```
 private readonly IKafkaBus<string, ReactiveInstance> _bus;
 await _bus.PublishAsync(Key, Body);
@@ -22,8 +25,10 @@ await _bus.PublishAsync(Key, Body);
 
 <h2>Usage Consumer</h2>
 Basic steps:
-* Create consumer instance with ReactiveInstance consumer object <br>
-and ConsumerHandler
+
+<li> Create consumer instance with ReactiveInstance consumer object <br>
+and ConsumerHandler </li>
+
 ```
 builder.Services.AddKafkaConsumer<string, ReactiveInstance, ReactiveHandler>
 (options =>
@@ -33,7 +38,8 @@ builder.Services.AddKafkaConsumer<string, ReactiveInstance, ReactiveHandler>
     options.GroupId = "base_group";
 });
 ```
-* Implemented consumer handler
+
+<li> Implemented consumer handler </li>
 
 ```
 public class ReactiveHandler : IConsumerHandler<string, ReactiveInstance>
